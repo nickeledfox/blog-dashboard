@@ -11,8 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('uploads'));
 
-// const routes = require('./server/routes/index');
-// app.use('/', routes);
+// routes
+const routes = require('./routes/index');
+app.use('/', routes);
 
 const mongoose = require('mongoose');
 
