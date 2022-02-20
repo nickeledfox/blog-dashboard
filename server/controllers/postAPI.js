@@ -3,6 +3,7 @@ const post = require('../models/postSchema');
 const fs = require('fs');
 
 module.exports = class Post {
+  // POST (create) single post
   static async createPost(req, res) {
     const newPost = req.body;
     const imageName = req.file.filename;
@@ -18,6 +19,17 @@ module.exports = class Post {
     }
   }
 
+  // GET all posts
+  static async getPostList(req, res) {
+    try {
+      const allPosts = await post.find();
+      res.status(200).json(allPosts);
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+
+  // GET post by id
   static async getPostByID(req, res) {
     const id = req.params.id;
 
@@ -29,6 +41,7 @@ module.exports = class Post {
     }
   }
 
+  // PATCH (update) post by id
   static async updatePost(req, res) {
     const id = req.params.id;
     let new_image = '';
@@ -56,6 +69,7 @@ module.exports = class Post {
     }
   }
 
+  // DELETE post by id
   static async deletePost(req, res) {
     const id = req.params.id;
 
@@ -70,15 +84,6 @@ module.exports = class Post {
         }
       }
       res.status(200).json({ message: 'The post has been deleted' });
-    } catch (err) {
-      res.status(404).json({ message: err.message });
-    }
-  }
-
-  static async getPostList(req, res) {
-    try {
-      const allPosts = await post.find();
-      res.status(200).json(allPosts);
     } catch (err) {
       res.status(404).json({ message: err.message });
     }
