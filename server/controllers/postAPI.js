@@ -7,6 +7,7 @@ module.exports = class Post {
     const newPost = req.body;
     const imageName = req.file.filename;
     newPost.image = imageName;
+
     try {
       await post.create(newPost);
       res.status(201).json({
@@ -19,6 +20,7 @@ module.exports = class Post {
 
   static async getPostByID(req, res) {
     const id = req.params.id;
+
     try {
       const postID = await post.findById(id);
       res.status(200).json(postID);
@@ -33,6 +35,7 @@ module.exports = class Post {
 
     if (req.file) {
       new_image = req.file.filename;
+
       try {
         fs.unlinkSync('./uploads/' + req.body.old_image);
       } catch (err) {
@@ -54,7 +57,22 @@ module.exports = class Post {
   }
 
   static async deletePost(req, res) {
-    res.send('Delete Post');
+    const id = req.params.id;
+
+    try {
+      const del = await post.findByIdAndDelete(id);
+
+      if (del.image != '') {
+        try {
+          fs.unlinkSync('./uploads/' + del.image);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      res.status(200).json({ message: 'The post has been deleted' });
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
   }
 
   static async getPostList(req, res) {
