@@ -10,8 +10,4 @@ router.delete('/:id', controller.deletePost);
 router.get('/', controller.getPostList);
 router.get('/:id', controller.getPostByID);
 
-router.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 module.exports = router;
