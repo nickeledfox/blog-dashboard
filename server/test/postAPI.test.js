@@ -64,6 +64,6 @@ describe('Post API', () => {
 });
 
 // TODO:
-// Test Post route
+// Test POST route
 // Test PATCH route
 // Test DELETE route
