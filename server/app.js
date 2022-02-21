@@ -17,3 +17,6 @@ app.use('/api/post', routes);
 
 // start server
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+// export for test
+module.exports = app;

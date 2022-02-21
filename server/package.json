@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha"
+    "test": "mocha --exit --recursive test/"
   },
   "dependencies": {
     "cors": "^2.8.5",
