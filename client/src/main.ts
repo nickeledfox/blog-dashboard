@@ -4,4 +4,7 @@ import router from './router';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 
+import 'css-reset-and-normalize';
+import './sass/main.sass';
+
 createApp(App).use(router).use(ElementPlus).mount('#app');
