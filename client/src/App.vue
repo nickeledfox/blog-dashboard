@@ -1,32 +1,29 @@
+<script>
+import Menu from './components/Menu.vue';
+export default {
+  components: {
+    Menu,
+  },
+};
+</script>
+
 <template>
   <div id="app">
-    <nav>
-      <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link :to="{ name: 'About' }">About</router-link>
-    </nav>
+    <Menu />
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&display=swap');
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'IBM Plex Serif', Avenir, Helvetica, Arial, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.title {
+  color: #555;
 }
 </style>
