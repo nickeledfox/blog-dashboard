@@ -1,6 +1,18 @@
 <template>
   <div class="home">
-    <h1 class="title">Home Page</h1>
+    <el-container class="main-container">
+      <el-container>
+        <el-header>
+          <div class="toolbar">
+            <span>Header</span>
+          </div>
+        </el-header>
+
+        <el-main>
+          <h1>Home</h1>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 

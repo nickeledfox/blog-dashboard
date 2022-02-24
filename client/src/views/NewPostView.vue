@@ -1,5 +1,17 @@
 <template>
-  <h1 class="title">Create New Post</h1>
+  <el-container>
+    <el-container class="main-container">
+      <el-header>
+        <div class="toolbar">
+          <span>Header</span>
+        </div>
+      </el-header>
+
+      <el-main>
+        <h1>Post</h1>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script lang="ts">
