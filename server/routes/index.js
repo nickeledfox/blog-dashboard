@@ -1,7 +1,8 @@
 const express = require('express');
-const router = express.Router();
-const controller = require('../controllers/postAPI');
 const upload = require('../modules/multer');
+
+const controller = require('../controllers/postAPI');
+const router = express.Router();
 
 // routes
 router.post('/', upload, controller.createPost);
