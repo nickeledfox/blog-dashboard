@@ -11,8 +11,8 @@
         {{ post.content.substring(0, 40) + '...' }}
       </p>
       <div class="post-card_footer bottom">
-        <time class="time">{{ post.date }}</time>
-        <el-button type="text" class="button">Operating</el-button>
+        <time class="time">{{ post.created }}</time>
+        <el-button type="text" class="button">Read More</el-button>
       </div>
     </div>
   </el-card>
