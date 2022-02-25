@@ -13,7 +13,10 @@ const postSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  category: String,
+  category: {
+    type: String,
+    required: true,
+  },
   image: String,
 });
 
