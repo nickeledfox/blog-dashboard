@@ -10,6 +10,7 @@
 
         <el-main>
           <h1>Home</h1>
+          <PostList />
         </el-main>
       </el-container>
     </el-container>
@@ -17,10 +18,12 @@
 </template>
 
 <script lang="ts">
+import PostList from '../components/PostList.vue';
+
 import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
 
 export default {
   name: 'HomeView',
-  components: { Search, Edit, Check, Message, Delete },
+  components: { Search, Edit, Check, Message, Delete, PostList },
 };
 </script>
