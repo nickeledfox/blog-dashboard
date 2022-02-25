@@ -1,4 +1,8 @@
-# Artist Blog
+# Blog
+
+**In progress
+
+![](demo/demo.png)
 
 ## Project setup
 
