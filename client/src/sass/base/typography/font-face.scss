@@ -1,4 +1,10 @@
-$font-path: '/public/fonts/';
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': green,
+    ),
+  )
+);
 
 @font-face {
   font-family: 'Avenir';
