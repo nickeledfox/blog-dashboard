@@ -20,5 +20,5 @@ import Menu from './components/Menu.vue';
   -moz-osx-font-smoothing: grayscale
 
 .menu-container
-  background-color: rgb(238, 241, 246)
+  background-color: #FBF8F8
 </style>

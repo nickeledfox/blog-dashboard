@@ -1,15 +1,29 @@
+<script lang="ts" setup>
+import { ref } from 'vue';
+const image: String = ref(require('../assets/image.svg'));
+
+import PostList from '../components/PostList.vue';
+import Header from '../components/Header.vue';
+import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
+</script>
+
 <template>
   <div class="home">
     <el-container class="main-container">
       <el-container>
-        <el-header>
-          <div class="toolbar">
-            <span>Header</span>
-          </div>
-        </el-header>
-
         <el-main>
-          <h1>Home</h1>
+          <Header />
+          <div class="home-contant">
+            <div class="home-img">
+              <img v-bind:src="image" alt="flower" />
+            </div>
+            <h1 class="home-title main-title">Blush & Bloom Blog</h1>
+            <p class="home-subtitle">
+              Follow Blush & Bloom blog for product announcements, and how to
+              take care of your flowers, and arrangements.
+            </p>
+          </div>
+
           <PostList />
         </el-main>
       </el-container>
@@ -17,13 +31,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import PostList from '../components/PostList.vue';
+<style lang="scss">
+.home {
+  &-contant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 
-import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
+  &-img {
+    width: 101px;
+    height: 101px;
+    top: 84px;
+  }
 
-export default {
-  name: 'HomeView',
-  components: { Search, Edit, Check, Message, Delete, PostList },
-};
-</script>
+  &-title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  &-subtitle {
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
+</style>
