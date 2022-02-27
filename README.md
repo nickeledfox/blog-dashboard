@@ -22,8 +22,12 @@ yarn start
 
 ### Start client
 
-split terminal;
-cd client
+- split terminal
+- cd client
+
+```
+yarn install
+```
 
 ```
 yarn dev
