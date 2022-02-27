@@ -1,6 +1,9 @@
 <template>
   <div class="menu">
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
+    <el-radio-group
+      v-model="isCollapse"
+      style="margin-bottom: 20px; --el-color-primary: #529b2e"
+    >
       <el-radio-button :label="false">expand</el-radio-button>
       <el-radio-button :label="true">collapse</el-radio-button>
     </el-radio-group>
@@ -57,5 +60,10 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 .menu {
   margin: 0 10px;
+}
+
+.el-icon svg.is-active,
+.el-menu-item.is-active {
+  color: #529b2e !important;
 }
 </style>
