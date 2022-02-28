@@ -19,6 +19,7 @@ import Menu from './components/Menu.vue';
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
 
+
 .menu-container
-  background-color: #FBF8F8
+  // background-color: #FBF8F8
 </style>
