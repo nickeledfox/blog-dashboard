@@ -1,35 +1,43 @@
+<script lang="ts" setup>
+import { Right } from '@element-plus/icons-vue';
+import { defineProps } from 'vue';
+
+interface Props {
+  post?: string;
+}
+const props = defineProps({
+  post: String,
+});
+</script>
+
 <template>
-  <el-card class="post-card" :body-style="{ padding: '0px' }">
+  <el-card shadow="hover" class="post-card" :body-style="{ padding: '0px' }">
     <div class="post-card_header">
       <img :src="`/${post.image}`" class="post-card_image" />
     </div>
 
     <div class="post-card_body" style="padding: 14px">
-      <el-tag class="post-card_category">{{ post.category }}</el-tag>
+      <span class="post-card_category">{{ post.category }}</span>
       <h4 class="post-card_title title">{{ post.title }}</h4>
       <p class="post-card_content">
-        {{ post.content.substring(0, 40) + '...' }}
+        {{ post.content.substring(0, 100) + '...' }}
       </p>
       <div class="post-card_footer bottom">
-        <time class="time">{{ post.created }}</time>
-        <el-button type="text" class="button">Read More</el-button>
+        <time class="time">{{ post.created.substring(0, 10) }}</time>
+        <el-button type="text" class="button"
+          >Read more <el-icon class="post-card_footer__icon"><right /></el-icon
+        ></el-button>
       </div>
     </div>
   </el-card>
 </template>
 
-<script lang="ts">
-export default {
-  props: ['post'],
-};
-</script>
-
 <style lang="scss">
+@use '../sass/base/colors' as *;
 .time {
   font-size: 13px;
-  color: #999;
+  color: $darck;
 }
-
 .bottom {
   margin-top: 13px;
   line-height: 12px;
@@ -37,34 +45,114 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
+.el-button > span {
+  padding: 3px 8px;
+}
 .button {
-  padding: 0;
   min-height: auto;
+  font-weight: 800;
+  font-size: 16px;
+  color: #000 !important;
+  font-family: Avenir;
+  outline: none;
+
+  transition: all 0.3s;
+  &:hover {
+    border: none;
+    background-image: linear-gradient(
+      315deg,
+      #00b712 0%,
+      #79c951 74%
+    ) !important;
+
+    .post-card_footer__icon {
+      transform: scale(1.3);
+      font-weight: 900;
+      right: 5px;
+    }
+  }
+
+  &:active {
+    .post-card_footer__icon {
+      left: 4px;
+    }
+  }
 }
 
 .post-card {
-  background: #ece9e6;
-  background: linear-gradient(to right, #ffffff, #ece9e6);
+  margin: 10px 0;
+  height: 435px;
+  max-width: 370px;
+  min-width: 20vw;
+  width: 22vw;
+
+  line-height: 1;
+  border: 1px solid $light;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  @media (any-hover: hover) {
+    &:hover {
+      cursor: pointer;
+
+      .post-card_content {
+        opacity: 1;
+      }
+
+      .post-card_image {
+        transform: scale(1.1);
+        transition: transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      }
+
+      .button {
+        background: #529b2e;
+        color: #fff !important;
+      }
+    }
+  }
 
   &_image {
     max-width: 100%;
     display: block;
     object-fit: cover;
+    background: $light-one;
+    width: 100vw;
+    height: 180px;
   }
 
   &_category {
     font-weight: 500;
+    font-size: 12px;
+    line-height: 175%;
+    color: $font-secondary;
   }
 
   &_title {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    font-size: 1.3rem;
   }
 
   &_content {
-    font-size: 1rem;
+    font-size: 1.15rem;
+    color: $font-secondary;
+    font-size: 16px;
     line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+
+  &_footer__icon {
+    font-size: 24px;
+    margin-left: 8px;
   }
 }
 </style>

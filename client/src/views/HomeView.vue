@@ -12,7 +12,6 @@ import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
     <el-container class="main-container">
       <el-container>
         <el-main>
-          <Header />
           <div class="home-contant">
             <div class="home-img">
               <img v-bind:src="image" alt="flower" />
@@ -23,7 +22,6 @@ import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
               take care of your flowers, and arrangements.
             </p>
           </div>
-
           <PostList />
         </el-main>
       </el-container>
@@ -33,6 +31,8 @@ import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
 
 <style lang="scss">
 .home {
+  display: flex;
+  justify-content: center;
   &-contant {
     display: flex;
     flex-direction: column;
@@ -55,6 +55,7 @@ import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
   &-subtitle {
     font-size: 14px;
     line-height: 21px;
+    padding-bottom: 32px;
   }
 }
 </style>

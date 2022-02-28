@@ -1,7 +1,12 @@
 <template>
   <div class="posts">
     <el-row :gutter="20">
-      <el-col style="margin: 0" v-for="post in posts" :key="post._id" :span="6">
+      <el-col
+        style="margin: 0 45px"
+        v-for="post in posts"
+        :key="post._id"
+        :span="5"
+      >
         <PostCard :post="post" />
       </el-col>
     </el-row>
