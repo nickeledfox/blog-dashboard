@@ -17,13 +17,17 @@ const props = defineProps({
     </div>
 
     <div class="post-card_body" style="padding: 14px">
-      <span class="post-card_category">{{ post.category }}</span>
-      <h4 class="post-card_title title">{{ post.title }}</h4>
-      <p class="post-card_content">
-        {{ post.content.substring(0, 100) + '...' }}
-      </p>
+      <div>
+        <div class="category-container">
+          <span class="post-card_category">{{ post.category }}</span>
+          <time class="time">{{ post.created.substring(0, 10) }}</time>
+        </div>
+        <h4 class="post-card_title title">{{ post.title }}</h4>
+        <p class="post-card_content">
+          {{ post.content.substring(0, 100) + '...' }}
+        </p>
+      </div>
       <div class="post-card_footer bottom">
-        <time class="time">{{ post.created.substring(0, 10) }}</time>
         <el-button type="text" class="button"
           >Read more <el-icon class="post-card_footer__icon"><right /></el-icon
         ></el-button>
@@ -34,52 +38,28 @@ const props = defineProps({
 
 <style lang="scss">
 @use '../sass/base/colors' as *;
+
+/* lib utils */
 .time {
   font-size: 13px;
-  color: $darck;
 }
+
 .bottom {
-  margin-top: 13px;
+  position: absolute;
+  bottom: 1rem;
   line-height: 12px;
+}
+
+.category-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.el-button > span {
-  padding: 3px 8px;
-}
-.button {
-  min-height: auto;
-  font-weight: 800;
-  font-size: 16px;
-  color: #000 !important;
-  font-family: Avenir;
-  outline: none;
-
-  transition: all 0.3s;
-  &:hover {
-    border: none;
-    background-image: linear-gradient(
-      315deg,
-      #00b712 0%,
-      #79c951 74%
-    ) !important;
-
-    .post-card_footer__icon {
-      transform: scale(1.3);
-      font-weight: 900;
-      right: 5px;
-    }
-  }
-
-  &:active {
-    .post-card_footer__icon {
-      left: 4px;
-    }
-  }
+  color: $font-secondary;
 }
 
+/* post card */
 .post-card {
+  position: relative;
   margin: 10px 0;
   height: 435px;
   max-width: 370px;
@@ -90,26 +70,7 @@ const props = defineProps({
   border: 1px solid $light;
   box-sizing: border-box;
   border-radius: 10px;
-
-  @media (any-hover: hover) {
-    &:hover {
-      cursor: pointer;
-
-      .post-card_content {
-        opacity: 1;
-      }
-
-      .post-card_image {
-        transform: scale(1.1);
-        transition: transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
-      }
-
-      .button {
-        background: #529b2e;
-        color: #fff !important;
-      }
-    }
-  }
+  transition: all linear 0.2s;
 
   &_image {
     max-width: 100%;
@@ -124,7 +85,6 @@ const props = defineProps({
     font-weight: 500;
     font-size: 12px;
     line-height: 175%;
-    color: $font-secondary;
   }
 
   &_title {
@@ -152,7 +112,65 @@ const props = defineProps({
 
   &_footer__icon {
     font-size: 24px;
-    margin-left: 8px;
+    margin-left: 10px;
+    transition: transform 0.3s;
+  }
+
+  /* card hover */
+  @media (any-hover: hover) {
+    &:hover {
+      cursor: pointer;
+
+      .post-card_content {
+        opacity: 1;
+      }
+
+      .post-card_image {
+        transform: scale(1.1);
+        transition: transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      }
+
+      .button {
+        background: $accent;
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+/* card button */
+.button {
+  > span {
+    padding: 3px 8px;
+  }
+
+  min-height: auto;
+  font-weight: 800;
+  font-size: 16px;
+  color: #000 !important;
+  font-family: Avenir;
+  outline: none;
+
+  transition: all 0.3s;
+  &:hover {
+    border: none;
+    background-image: linear-gradient(
+      315deg,
+      #00b712 0%,
+      #79c951 74%
+    ) !important;
+
+    .post-card_footer__icon {
+      transform: scale(1.3);
+      font-weight: 900;
+      right: 5px;
+    }
+  }
+
+  &:active {
+    .post-card_footer__icon {
+      left: 4px;
+    }
   }
 }
 </style>

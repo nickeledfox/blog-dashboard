@@ -52,7 +52,8 @@ const handleClose = (key: string, keyPath: string[]) => {
 };
 </script>
 
-<style>
+<style lang="scss">
+@use '../sass/base/colors' as *;
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 100%;
@@ -64,6 +65,6 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 .el-icon svg.is-active,
 .el-menu-item.is-active {
-  color: #529b2e !important;
+  color: $accent !important;
 }
 </style>
