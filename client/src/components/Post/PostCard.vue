@@ -24,7 +24,7 @@ const props = defineProps({
         </div>
         <h4 class="post-card_title title">{{ post.title }}</h4>
         <p class="post-card_content">
-          {{ post.content.substring(0, 100) + '...' }}
+          {{ post.content.substring(0, 130) + '...' }}
         </p>
       </div>
       <div class="post-card_footer bottom">
@@ -37,7 +37,7 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-@use '../sass/base/colors' as *;
+@use '../../sass/base/colors.sass' as *;
 
 /* lib utils */
 .time {
@@ -61,7 +61,7 @@ const props = defineProps({
 .post-card {
   position: relative;
   margin: 10px 0;
-  height: 435px;
+  height: 440px;
   max-width: 370px;
   min-width: 20vw;
   width: 22vw;
@@ -119,8 +119,6 @@ const props = defineProps({
   /* card hover */
   @media (any-hover: hover) {
     &:hover {
-      cursor: pointer;
-
       .post-card_content {
         opacity: 1;
       }

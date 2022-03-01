@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 const image: String = ref(require('../assets/image.svg'));
 
-import PostList from '../components/PostList.vue';
+import PostList from '../components/Post/PostList.vue';
 import Header from '../components/Header.vue';
 import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
 </script>
