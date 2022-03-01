@@ -3,6 +3,7 @@ import { ref } from 'vue';
 const image: String = ref(require('../assets/image.svg'));
 
 import PostList from '../components/Post/PostList.vue';
+import PostStaticCard from '../components/Post/PostStaticCard.vue';
 import Header from '../components/Header.vue';
 import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
 </script>
@@ -22,6 +23,7 @@ import { Search, Edit, Check, Message, Delete } from '@element-plus/icons-vue';
               take care of your flowers, and arrangements.
             </p>
           </div>
+          <PostStaticCard />
           <PostList />
         </el-main>
       </el-container>

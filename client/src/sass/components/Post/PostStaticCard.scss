@@ -1,0 +1,31 @@
+.static-card {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #eeecec;
+  box-sizing: border-box;
+  border-radius: 8px;
+  height: 290px;
+  width: 90%;
+  margin: 0 auto 1rem;
+
+  &-content__wrapper {
+    padding: 35px 20px 35px 0;
+    margin-left: -35px;
+    width: 40%;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+    width: 90%;
+    height: 289px;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .category {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 175%;
+  }
+}

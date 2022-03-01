@@ -30,6 +30,14 @@ const routes = [
     },
   },
   {
+    path: '/post/:id',
+    name: 'Post',
+    component: () => import(/* webpackChunkName: "post" */ '../views/Post.vue'),
+    meta: {
+      title: 'Post',
+    },
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: NotFound,
