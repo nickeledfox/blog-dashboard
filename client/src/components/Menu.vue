@@ -40,7 +40,6 @@
 </template>
 
 <script lang="ts" setup>
-import '../sass/components/Menu.scss';
 import { ref } from 'vue';
 import { EditPen, HomeFilled, Notebook } from '@element-plus/icons-vue';
 
@@ -52,3 +51,18 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };
 </script>
+
+<style lang="sass" scoped>
+@use '../sass/base/colors' as *
+
+.el-menu-vertical-demo:not(.el-menu--collapse)
+  width: 200px
+  min-height: 100%
+
+.menu
+  margin: 0 10px
+
+.el-icon svg.is-active,
+.el-menu-item.is-active
+  color: $accent !important
+</style>

@@ -1,7 +1,7 @@
 @use '../../base/colors.sass' as *;
 
 /* lib utils */
-.time {
+.time.post--card {
   font-size: 13px;
 }
 
@@ -21,11 +21,10 @@
 /* post card */
 .post-card {
   position: relative;
-  margin: 10px 0;
+  margin: 0.5rem;
   height: 440px;
-  max-width: 370px;
+  max-width: 370px !important;
   min-width: 20vw;
-  width: 22vw;
 
   line-height: 1;
   border: 1px solid $light;
@@ -42,7 +41,7 @@
     height: 180px;
   }
 
-  &_category {
+  &_category.post--card {
     font-weight: 500;
     font-size: 12px;
     line-height: 175%;

@@ -1,11 +1,12 @@
 <template>
   <div class="posts">
-    <el-row :gutter="20">
+    <el-row type="flex" justify="space-between">
       <el-col
-        style="margin: 0 45px"
+        style="margin: 0"
         v-for="post in posts"
         :key="post._id"
-        :span="5"
+        :span="8"
+        type="flex"
       >
         <PostCard :post="post" />
       </el-col>

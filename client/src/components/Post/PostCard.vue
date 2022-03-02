@@ -1,13 +1,15 @@
 <script lang="ts" setup>
+// style getting big so it's moved to:
 import '../../sass/components/Post/PostCard.scss';
+
 import { Right } from '@element-plus/icons-vue';
 import { defineProps } from 'vue';
 
 interface Props {
-  post?: string;
+  post?: Object;
 }
 const props = defineProps({
-  post: String,
+  post: Object,
 });
 </script>
 
@@ -20,8 +22,10 @@ const props = defineProps({
     <div class="post-card_body" style="padding: 14px">
       <div>
         <div class="category-container">
-          <span class="post-card_category">{{ post.category }}</span>
-          <time class="time">{{ post.created.substring(0, 10) }}</time>
+          <span class="post-card_category post--card">{{ post.category }}</span>
+          <time class="time post--card">{{
+            post.created.substring(0, 10)
+          }}</time>
         </div>
         <h4 class="post-card_title title">{{ post.title }}</h4>
         <p class="post-card_content">
