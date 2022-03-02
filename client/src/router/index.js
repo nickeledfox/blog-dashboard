@@ -32,7 +32,8 @@ const routes = [
   {
     path: '/post/:id',
     name: 'Post',
-    component: () => import(/* webpackChunkName: "post" */ '../views/Post.vue'),
+    component: () =>
+      import(/* webpackChunkName: "post" */ '../views/PostView.vue'),
     meta: {
       title: 'Post',
     },

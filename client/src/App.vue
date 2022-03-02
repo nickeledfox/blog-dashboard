@@ -18,8 +18,4 @@ import Menu from './components/Menu.vue';
   position: reletive
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-
-
-.menu-container
-  // background-color: #FBF8F8
 </style>
