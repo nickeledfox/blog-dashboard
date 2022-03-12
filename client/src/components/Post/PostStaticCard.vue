@@ -1,4 +1,7 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+// @ts-ignore
+import PostButton from '../Post/PostButton.vue';
+</script>
 
 <template>
   <div>
@@ -17,7 +20,7 @@
         ><div class="grid-content">
           <div class="static-card-content__wrapper">
             <span class="category">Flower Arrangement</span>
-            <h1>
+            <h1 class="post-card_title title">
               5 easy DIY flower arrangements that'll instantly brighten up your
               mood
             </h1>
@@ -26,40 +29,48 @@
               the articles is about. Put some overview here about the title that
               quickly tell what’s the articles is about.}
             </p>
-            <span>Read more posts</span>
-          </div>
-        </div></el-col
-      >
+
+            <div class="bottom">
+              <router-link :to="{ name: 'About' }">
+                <PostButton id="statc-button" text="Read more posts" />
+              </router-link>
+            </div>
+          </div></div
+      ></el-col>
     </el-row>
   </div>
 </template>
 
-<style scoped lang="scss">
-.static-card {
-  border: 1px solid #eeecec;
-  box-sizing: border-box;
-  border-radius: 8px;
-  height: 290px;
-  margin: 0.5rem;
+<style lang="sass">
+#statc-button
+  > span
+    padding: 0
 
-  &-content__wrapper {
-    padding: 35px 20px 35px 0;
-    margin-left: -45px;
-  }
+.static-card
+  border: 1px solid #eeecec
+  box-sizing: border-box
+  border-radius: 8px
+  height: 320px
+  margin: 0.5rem
 
-  img {
-    max-width: 100%;
-    display: block;
-    object-fit: cover;
-    width: 90%;
-    height: 289px;
-    border-radius: 8px 0 0 8px;
-  }
+  &-content__wrapper
+    padding: 35px 20px 35px 0
+    margin-left: -45px
 
-  .category {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 175%;
-  }
-}
+  img
+    max-width: 100%
+    display: block
+    object-fit: cover
+    width: 90%
+    height: 319px
+    border-radius: 8px 0 0 8px
+
+  .category
+    font-weight: 500
+    font-size: 12px
+    line-height: 175%
+
+  .title
+    font-size: 1.5rem
+    padding-bottom: .5rem
 </style>
