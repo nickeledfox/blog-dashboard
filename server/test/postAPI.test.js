@@ -8,7 +8,7 @@ chai.should();
 chai.use(chaiHttp);
 
 describe('Post API', () => {
-  // // Test: GET route
+  // Test: GET route
   describe('GET /api/post', () => {
     it('It should GET an entire post list', (done) => {
       chai
@@ -46,7 +46,7 @@ describe('Post API', () => {
           response.body.should.have.property('content');
           response.body.should.have.property('created');
           response.body.should.have.property('_id').eq(testID);
-          // category and image are optional
+          // image is optional
           done();
         });
     });
