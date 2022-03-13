@@ -3,13 +3,15 @@
     <el-container class="main-container">
       <el-main>
         <Header />
-        <!--  -->
+        <NewPostForm />
       </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script lang="ts" setup>
+// @ts-ignore
+import NewPostForm from '../components/NewPostForm.vue';
 import Header from '../components/Header.vue';
 </script>
 

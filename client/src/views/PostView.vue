@@ -16,11 +16,21 @@
           </p>
         </div>
       </div>
+      <div class="post_footer">
+        <el-button class="edit">
+          <el-icon><edit /></el-icon
+        ></el-button>
+        <el-button class="delete">
+          <el-icon><delete /></el-icon
+        ></el-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { Edit, Delete } from '@element-plus/icons-vue';
+
 import API from '../api/api';
 export default {
   data() {
@@ -32,10 +42,15 @@ export default {
     const res = await API.getPostByID(this.$route.params.id);
     this.post = res;
   },
+  components: {
+    Edit,
+    Delete,
+  },
 };
 </script>
 
 <style lang="sass">
+
 .post
   margin: 5rem auto
   width: 70%
@@ -46,7 +61,24 @@ export default {
     min-width: none
     object-fit: contain
 
+  &_footer
+    padding-top: 3rem
+
   .category
     font-color: red
     font-size: 1rem
+
+  // buttons
+  .el-button
+    transition: all .3s
+
+  .el-button.edit
+    &:hover
+      color:  #95d475
+      border-color:  #95d475
+
+  .el-button.delete
+    &:hover
+      color:  #f89898
+      border-color:  #f89898
 </style>

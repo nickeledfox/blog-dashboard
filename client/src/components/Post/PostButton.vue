@@ -19,19 +19,20 @@ const props = defineProps({
     padding: 3px 8px
 
   min-height: auto
-  font-weight: 800
-  font-size: 16px
+  font-weight: 800 !important
+  font-size: 16px !important
   color: #000 !important
   font-family: Avenir
   outline: none
 
   transition: all 0.5s
   &:hover
-    > span
-    padding: 7px 8px
     border: none
     color: #fff !important
     background: linear-gradient( 315deg, #00b712 0%,#79c951 74% )!important
+
+    > span
+      padding: 7px 8px !important
 
     .post-card_footer__icon
       transform: scale(1.3)
