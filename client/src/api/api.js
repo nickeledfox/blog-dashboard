@@ -13,11 +13,11 @@ export default class API {
   }
 
   static async addPost(post) {
-    const res = await axios.post(url, post);
+    const res = await axios.post(URL, post);
     return res.data;
   }
 
-  static async addPost(id, post) {
+  static async updatePost(id, post) {
     const res = await axios.patch(`${URL}/${id}`, post);
     return res.data;
   }
