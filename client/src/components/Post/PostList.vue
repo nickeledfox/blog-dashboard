@@ -1,6 +1,6 @@
 <template>
   <div class="posts">
-    <el-row type="flex" justify="space-between">
+    <el-row type="flex">
       <el-col
         style="margin: 0"
         v-for="post in posts"

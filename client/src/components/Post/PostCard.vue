@@ -4,10 +4,6 @@ import { defineProps } from 'vue';
 
 // @ts-ignore
 import PostButton from '../Post/PostButton.vue';
-
-interface Props {
-  post?: Object;
-}
 const props = defineProps({
   post: Object,
 });

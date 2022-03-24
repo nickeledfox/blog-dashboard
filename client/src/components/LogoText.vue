@@ -10,7 +10,6 @@ export default {
 
 <style lang="sass">
 .logo
-  font-size: 24px
-  line-height: 36px
-  padding: 0 22px
+  position: absolute
+  right: 1rem
 </style>
