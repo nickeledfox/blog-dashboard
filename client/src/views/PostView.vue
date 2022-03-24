@@ -8,7 +8,8 @@
         <div>
           <div class="category-container category">
             <span class="post-card_category">{{ post.category }}</span>
-            <time class="time">{{ post.created.substring(0, 10) }}</time>
+            <time class="time">{{ post.created }}</time>
+            <!-- .substring(0, 10) -->
           </div>
           <h1 class="post-card_title title">{{ post.title }}</h1>
           <p>
@@ -17,10 +18,12 @@
         </div>
       </div>
       <div class="post_footer">
-        <el-button class="edit">
-          <el-icon><edit /></el-icon
-        ></el-button>
-        <el-button class="delete">
+        <router-link :to="{ name: 'EditPost', params: { id: post._id } }"
+          ><el-button class="edit">
+            <el-icon><edit /></el-icon></el-button
+        ></router-link>
+
+        <el-button class="delete" @click="deletePost(post._id)">
           <el-icon><delete /></el-icon
         ></el-button>
       </div>
@@ -30,8 +33,8 @@
 
 <script>
 import { Edit, Delete } from '@element-plus/icons-vue';
-
 import API from '../api/api';
+
 export default {
   data() {
     return {
@@ -45,6 +48,12 @@ export default {
   components: {
     Edit,
     Delete,
+  },
+  methods: {
+    async deletePost(id) {
+      const res = await API.delPostByID(id);
+      this.$router.push({ name: 'Home' });
+    },
   },
 };
 </script>
@@ -73,6 +82,7 @@ export default {
     transition: all .3s
 
   .el-button.edit
+    margin-right: 10px
     &:hover
       color:  #95d475
       border-color:  #95d475
