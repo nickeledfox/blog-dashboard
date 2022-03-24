@@ -1,108 +1,103 @@
 <template>
   <el-form
     ref="ruleFormRef"
-    :model="ruleForm"
+    :model="post"
     :rules="rules"
     label-width="120px"
     class="demo-ruleForm"
     :size="formSize"
   >
-    <el-form-item label="Post title" prop="title">
-      <el-input v-model="ruleForm.title"></el-input>
+    <!-- TODO: handle reset with other fields -->
+    <el-form-item prop="upload">
+      <Upload @change="upload" />
     </el-form-item>
-    <el-form-item label="Activity zone" prop="category">
-      <el-select v-model="ruleForm.category" placeholder="Select category">
+    <!-- Category -->
+    <el-form-item label="Category" prop="category">
+      <el-select
+        style="width: 20rem"
+        v-model="post.category"
+        placeholder="Select category"
+      >
         <el-option
           label="Elliptical flower arrangement"
-          value="elliptical"
+          value="Elliptical flower arrangement"
         ></el-option>
         <el-option
           label="Vertical flower arrangement"
-          value="vertical"
+          value="Vertical flower arrangement"
         ></el-option>
-        <el-option label="Triangular flowers" value="triangular"></el-option>
+        <el-option
+          label="Triangular flowers"
+          value="Triangular flowers"
+        ></el-option>
         <el-option
           label="The crescent flower arrangement"
-          value="crescent"
+          value="The crescent flower arrangement"
         ></el-option>
         <el-option
           label="The 'S' shaped flower arrangement"
-          value="s-shaped"
+          value="The 'S' shaped flower arrangement"
         ></el-option>
         <el-option
           label="The oval shaped flower arrangement"
-          value="oval"
+          value="The oval shaped flower arrangement"
         ></el-option>
         <el-option
           label="The cascade flower arrangement"
-          value="cascade"
+          value="The cascade flower arrangement"
         ></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="Activity time" required>
-      <el-col :span="11">
-        <el-form-item prop="date1">
-          <el-date-picker
-            v-model="ruleForm.date1"
-            type="date"
-            placeholder="Pick a date"
-            style="width: 100%"
-          ></el-date-picker>
-        </el-form-item>
-      </el-col>
-      <el-col class="text-center" :span="2">
-        <span class="text-gray-500">-</span>
-      </el-col>
-      <el-col :span="11">
-        <el-form-item prop="date2">
-          <el-time-picker
-            v-model="ruleForm.date2"
-            placeholder="Pick a time"
-            style="width: 100%"
-          ></el-time-picker>
-        </el-form-item>
-      </el-col>
+    <!-- Title -->
+    <el-form-item label="Post title" prop="title">
+      <el-input class="title" v-model="post.title"></el-input>
     </el-form-item>
-
+    <!-- Content field -->
     <el-form-item label="Content" prop="content">
       <el-input
-        v-model="ruleForm.content"
+        v-model="post.content"
         type="textarea"
         :autosize="{ minRows: 10, maxRows: 25 }"
       ></el-input>
     </el-form-item>
-
     <el-form-item>
+      <!-- Submit button -->
       <el-button type="primary" @click="submitForm(ruleFormRef)"
         >Create</el-button
       >
+      <!-- Reset button -->
       <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script lang="ts" setup>
+import API from '../api/api';
 import { reactive, ref } from 'vue';
 // @ts-ignore
+import Upload from './Upload.vue';
+// @ts-ignore
 import type { FormInstance } from 'element-plus';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const formSize = ref('default');
 const ruleFormRef = ref<FormInstance>();
-const ruleForm = reactive({
+const post = reactive({
   title: '',
   category: '',
-  date1: '',
-  date2: '',
   content: '',
+  image: '',
 });
 
 const rules = reactive({
   title: [
     { required: true, message: 'Please input Post title', trigger: 'blur' },
     {
-      min: 10,
+      min: 4,
       max: 300,
-      message: 'Length should be 10 to 300',
+      message: 'Length should be 4 to 300',
       trigger: 'blur',
     },
   ],
@@ -113,32 +108,27 @@ const rules = reactive({
       trigger: 'change',
     },
   ],
-  date1: [
-    {
-      type: 'date',
-      required: true,
-      message: 'Please pick a date',
-      trigger: 'change',
-    },
-  ],
-  date2: [
-    {
-      type: 'date',
-      required: true,
-      message: 'Please pick a time',
-      trigger: 'change',
-    },
-  ],
   content: [
     { required: true, message: 'Please input activity form', trigger: 'blur' },
   ],
+  image: [{ required: false }],
 });
+
+const upload = (file) => {
+  post.image = file[0];
+};
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  await formEl.validate((valid, fields) => {
+  await formEl.validate(async (valid, fields) => {
+    const formData = new FormData();
+    formData.append('title', post.title);
+    formData.append('category', post.category);
+    formData.append('content', post.content);
+    formData.append('image', post.image);
     if (valid) {
-      console.log('submit!');
+      const res = await API.addPost(formData);
+      router.push({ name: 'Home' });
     } else {
       console.log('error submit!', fields);
     }
