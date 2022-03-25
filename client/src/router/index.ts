@@ -12,12 +12,12 @@ const routes = [
     },
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/posts',
+    name: 'AllPosts',
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+      import(/* webpackChunkName: "posts" */ '../views/AllPostsView.vue'),
     meta: {
-      title: 'About',
+      title: 'Posts',
     },
   },
   {
@@ -30,7 +30,7 @@ const routes = [
     },
   },
   {
-    path: '/edit',
+    path: '/edit/:id',
     name: 'EditPost',
     component: () =>
       import(/* webpackChunkName: "edit" */ '../views/EditPostView.vue'),
