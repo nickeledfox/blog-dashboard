@@ -22,9 +22,9 @@
         </el-menu-item>
       </router-link>
 
-      <router-link :to="{ name: 'About' }">
+      <router-link :to="{ name: 'AllPosts' }">
         <el-menu-item index="2">
-          <template #title>About</template>
+          <template #title>Posts</template>
           <el-icon><notebook /></el-icon>
         </el-menu-item>
       </router-link>
@@ -50,10 +50,13 @@ const handleClose = (key: string, keyPath: string[]) => {};
 
 <style lang="sass" scoped>
 @use '../sass/base/colors' as *
-
+.el-radio-group
+  @media(max-width: 716px)
+  display: none
 .el-menu-vertical-demo:not(.el-menu--collapse)
   width: 200px
   min-height: 100%
+
 
 .menu
   margin: 0 10px

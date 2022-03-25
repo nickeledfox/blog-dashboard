@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 // @ts-ignore
-import NewPostForm from '../components/NewPostForm.vue';
+import NewPostForm from '../components/Post/NewPostForm.vue';
 import Header from '../components/Header.vue';
 </script>
 

@@ -73,5 +73,7 @@ const handlePictureCardPreview = (file: UploadFile) => {
   width: 100% !important
 
 .el-upload--picture-card, .el-upload-list--picture-card .el-upload-list__item
-  width: 20rem
+
+  @media (min-width: 605px)
+    width: 20rem
 </style>

@@ -2,6 +2,9 @@
   <div class="posts">
     <el-row type="flex">
       <el-col
+        :md="8"
+        :sm="10"
+        :xs="12"
         style="margin: 0"
         v-for="post in posts"
         :key="post._id"

@@ -72,11 +72,11 @@
 </template>
 
 <script lang="ts" setup>
-import rules from '../validation/rules';
-import API from '../api/api';
+import rules from '../../validation/rules';
+import API from '../../api/api';
 import { reactive, ref } from 'vue';
 // @ts-ignore
-import Upload from './Upload.vue';
+import Upload from '../Upload.vue';
 // @ts-ignore
 import type { FormInstance } from 'element-plus';
 import { useRouter } from 'vue-router';

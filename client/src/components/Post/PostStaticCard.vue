@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 // @ts-ignore
 import PostButton from '../Post/PostButton.vue';
+let home = !true;
 </script>
 
 <template>
   <div>
-    <el-row class="static-card">
-      <el-col :span="16"
+    <el-row class="static-card xs-hidden">
+      <el-col :sm="14" :xs="12" :span="16"
         ><div class="grid-content">
           <div class="static-card-header">
             <img
@@ -16,7 +17,7 @@ import PostButton from '../Post/PostButton.vue';
             />
           </div></div
       ></el-col>
-      <el-col :span="8"
+      <el-col :sm="10" :xs="12" :span="8"
         ><div class="grid-content">
           <div class="static-card-content__wrapper">
             <span class="category">Flower Arrangement</span>
@@ -31,9 +32,16 @@ import PostButton from '../Post/PostButton.vue';
             </p>
 
             <div class="bottom">
-              <router-link :to="{ name: 'About' }">
-                <PostButton id="statc-button" text="Read more posts" />
-              </router-link>
+              <div v-if="home">
+                <router-link :to="{ name: 'Home' }">
+                  <PostButton id="statc-button" text="Back to Home" />
+                </router-link>
+              </div>
+              <div v-else>
+                <router-link :to="{ name: 'AllPosts' }">
+                  <PostButton id="statc-button" text="Go to Posts" />
+                </router-link>
+              </div>
             </div>
           </div></div
       ></el-col>
@@ -42,6 +50,10 @@ import PostButton from '../Post/PostButton.vue';
 </template>
 
 <style lang="sass">
+.xs-hidden
+  @media(max-width: 720px)
+    display: none !important
+
 #statc-button
   > span
     padding: 0
@@ -52,10 +64,15 @@ import PostButton from '../Post/PostButton.vue';
   border-radius: 8px
   height: 320px
   margin: 0.5rem
+  @media(max-width: 826px)
+    height: 350px
 
   &-content__wrapper
-    padding: 35px 20px 35px 0
-    margin-left: -45px
+    padding: 0 10px 0 0
+    margin-left: -10px
+    @media (min-width: 1465px)
+      padding: 35px 20px 35px 0
+      margin-left: -45px
 
   img
     max-width: 100%
@@ -64,6 +81,8 @@ import PostButton from '../Post/PostButton.vue';
     width: 90%
     height: 319px
     border-radius: 8px 0 0 8px
+    @media(max-width: 826px)
+      height: 350px
 
   .category
     font-weight: 500
@@ -71,6 +90,11 @@ import PostButton from '../Post/PostButton.vue';
     line-height: 175%
 
   .title
-    font-size: 1.5rem
+    font-size: 1.2rem
     padding-bottom: .5rem
+    @media(min-width: 1055px)
+      font-size: 1.5rem
+
+  p
+    font-size: .9rem
 </style>

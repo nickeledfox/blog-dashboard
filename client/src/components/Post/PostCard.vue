@@ -20,7 +20,7 @@ const props = defineProps({
         <div class="category-container">
           <span class="post-card_category post--card">{{ post.category }}</span>
           <time class="time post--card">{{
-            post.created.substring(0, 10)
+            (post.created = new Date().toDateString())
           }}</time>
         </div>
         <h4 class="post-card_title title">{{ post.title }}</h4>
@@ -44,12 +44,10 @@ const props = defineProps({
 .time.post--card
   font-size: 13px
 
-
 .bottom
   position: absolute
   bottom: 1rem
   line-height: 12px
-
 
 .category-container
   display: flex
@@ -71,6 +69,8 @@ const props = defineProps({
   box-sizing: border-box
   border-radius: 10px
   transition: all linear 0.2s
+  @media(max-width: 1014px)
+    height: 470px
 
   &_image
     max-width: 100%
@@ -80,20 +80,20 @@ const props = defineProps({
     width: 100vw
     height: 180px
 
-
   &_category.post--card
     font-weight: 500
     font-size: 12px
-    line-height: 175%
-
+    @media(min-width: 1055px)
+      line-height: 175%
 
   &_title
+    font-size: 1rem
     margin: 0.5rem 0
-    font-size: 1.3rem
-
+    @media(min-width: 1055px)
+      font-size: 1.3rem
 
   &_content
-    font-size: 1.15rem
+    font-size: .8rem
     color: $font-secondary
     font-size: 16px
     line-height: 1
@@ -107,7 +107,8 @@ const props = defineProps({
     order: 1
     align-self: stretch
     flex-grow: 0
-
+    @media(min-width: 1055px)
+      font-size: 1.15rem
 
   &_footer__icon
     font-size: 24px
@@ -121,11 +122,9 @@ const props = defineProps({
       .post-card_content
         opacity: 1
 
-
       .post-card_image
         transform: scale(1.1)
         transition: transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95)
-
 
       .button
         background: $accent

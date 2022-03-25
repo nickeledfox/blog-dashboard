@@ -1,5 +1,20 @@
 <template>
   <div class="main-container">
+    <el-popconfirm
+      confirm-button-text="OK"
+      cancel-button-text="No, Thanks"
+      :icon="InfoFilled"
+      icon-color="red"
+      title="Are you sure to delete this post?"
+      @confirm="confirmEvent"
+      @cancel="cancelEvent"
+    >
+      <template #reference>
+        <el-button plain> Error </el-button>
+      </template>
+    </el-popconfirm>
+    <!-- vvvvvvvvvvvvv -->
+
     <div class="post">
       <div>
         <img :src="`/${post.image}`" class="post_image" />
@@ -9,7 +24,6 @@
           <div class="category-container category">
             <span class="post-card_category">{{ post.category }}</span>
             <time class="time">{{ post.created }}</time>
-            <!-- .substring(0, 10) -->
           </div>
           <h1 class="post-card_title title">{{ post.title }}</h1>
           <p>
@@ -33,6 +47,8 @@
 
 <script>
 import { Edit, Delete } from '@element-plus/icons-vue';
+import { ElNotification } from 'element-plus';
+import { InfoFilled } from '@element-plus/icons-vue';
 import API from '../api/api';
 
 export default {
@@ -44,6 +60,7 @@ export default {
   async created() {
     const res = await API.getPostByID(this.$route.params.id);
     this.post = res;
+    res.created = new Date().toDateString(); // or .substring(0, 10)
   },
   components: {
     Edit,
@@ -53,6 +70,22 @@ export default {
     async deletePost(id) {
       const res = await API.delPostByID(id);
       this.$router.push({ name: 'Home' });
+    },
+    confirmEvent() {
+      ElNotification({
+        title: 'Success',
+        message: 'This is a success message',
+        type: 'success',
+      });
+      console.log('confirm!');
+    },
+    cancelEvent() {
+      ElNotification({
+        title: 'Error',
+        message: 'This is an error message',
+        type: 'error',
+      });
+      console.log('cancel!');
     },
   },
 };
