@@ -1,6 +1,6 @@
 # Blog
 
-**In progress
+Designer [Elaine Cervania](https://www.figma.com/@elainecervania)
 
 ![](demo/demo.png)
 
