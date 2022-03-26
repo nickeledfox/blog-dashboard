@@ -52,7 +52,8 @@ const handleClose = (key: string, keyPath: string[]) => {};
 @use '../sass/base/colors' as *
 .el-radio-group
   @media(max-width: 716px)
-  display: none
+    display: none
+
 .el-menu-vertical-demo:not(.el-menu--collapse)
   width: 200px
   min-height: 100%

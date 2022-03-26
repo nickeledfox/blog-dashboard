@@ -3,15 +3,6 @@ import { ref } from 'vue';
 const image: String = ref(require('../assets/image.svg'));
 // @ts-ignore
 import PostStaticCard from '../components/Post/PostStaticCard.vue';
-import { ElNotification } from 'element-plus';
-
-const open1 = () => {
-  ElNotification({
-    title: 'Success',
-    message: 'This is a success message',
-    type: 'success',
-  });
-};
 </script>
 
 <template>
@@ -30,7 +21,6 @@ const open1 = () => {
             </p>
           </div>
           <PostStaticCard />
-          <el-button plain @click="open1"> Success </el-button>
         </el-main>
       </el-container>
     </el-container>
@@ -47,6 +37,9 @@ const open1 = () => {
     align-items: center
     justify-content: center
     text-align: center
+    @media (max-width: 480px)
+      width: 60vw
+      margin: 0 auto
 
 
   &-img

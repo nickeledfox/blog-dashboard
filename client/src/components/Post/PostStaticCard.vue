@@ -17,7 +17,7 @@ let home = !true;
             />
           </div></div
       ></el-col>
-      <el-col :sm="10" :xs="12" :span="8"
+      <el-col :sm="10" :xs="12" :md="10" :span="8"
         ><div class="grid-content">
           <div class="static-card-content__wrapper">
             <span class="category">Flower Arrangement</span>
@@ -34,7 +34,7 @@ let home = !true;
             <div class="bottom">
               <div v-if="home">
                 <router-link :to="{ name: 'Home' }">
-                  <PostButton id="statc-button" text="Back to Home" />
+                  <PostButton id="statc-button" text="Back Home" />
                 </router-link>
               </div>
               <div v-else>

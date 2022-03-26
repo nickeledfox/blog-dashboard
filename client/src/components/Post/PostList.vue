@@ -3,8 +3,8 @@
     <el-row type="flex">
       <el-col
         :md="8"
-        :sm="10"
-        :xs="12"
+        :sm="12"
+        :xs="24"
         style="margin: 0"
         v-for="post in posts"
         :key="post._id"
@@ -34,3 +34,11 @@ export default {
   },
 };
 </script>
+<style scoped lang="sass">
+
+
+
+@media only screen and (max-width: 768px)
+  .el-col-xs-16
+    margin: 0 auto !important
+</style>

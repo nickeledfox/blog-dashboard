@@ -20,7 +20,7 @@ const props = defineProps({
         <div class="category-container">
           <span class="post-card_category post--card">{{ post.category }}</span>
           <time class="time post--card">{{
-            (post.created = new Date().toDateString())
+            new Date(post.created).toDateString()
           }}</time>
         </div>
         <h4 class="post-card_title title">{{ post.title }}</h4>
@@ -60,17 +60,17 @@ const props = defineProps({
 .post-card
   position: relative
   margin: 0.5rem
-  height: 440px
-  max-width: 370px !important
   min-width: 20vw
+  @media (min-width: 395px)
+    height: 440px
+  @media (min-width: 768px)
+    max-width: 370px !important
 
   line-height: 1
   border: 1px solid $light
   box-sizing: border-box
   border-radius: 10px
   transition: all linear 0.2s
-  @media(max-width: 1014px)
-    height: 470px
 
   &_image
     max-width: 100%
