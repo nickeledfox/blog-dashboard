@@ -1,37 +1,9 @@
-# Blog
+# Blog Admin Dashboard
 
-Designer [Elaine Cervania](https://www.figma.com/@elainecervania)
 
 ![](demo/demo.png)
+Designer [Elaine Cervania](https://www.figma.com/@elainecervania)
 
-## Project setup
-
-```
-cd server
-```
-
-```
-yarn install
-```
-
-### Start server
-
-```
-yarn start
-```
-
-### Start client
-
-- split terminal
-- cd client
-
-```
-yarn install
-```
-
-```
-yarn dev
-```
 
 ### Compiles and hot-reloads for development
 
@@ -39,7 +11,7 @@ yarn dev
 yarn dev
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for production (on client)
 
 ```
 yarn build
