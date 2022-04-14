@@ -14,5 +14,3 @@
 import NewPostForm from '../components/Post/NewPostForm.vue';
 import Header from '../components/Header.vue';
 </script>
-
-<style></style>

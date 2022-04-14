@@ -51,6 +51,7 @@ const props = defineProps({
 
 .category-container
   display: flex
+  flex-wrap: wrap
   justify-content: space-between
   align-items: center
   color: $font-secondary
@@ -84,7 +85,7 @@ const props = defineProps({
     font-weight: 500
     font-size: 12px
     @media(min-width: 1055px)
-      line-height: 175%
+      line-height: 120%
 
   &_title
     font-size: 1rem
@@ -107,8 +108,7 @@ const props = defineProps({
     order: 1
     align-self: stretch
     flex-grow: 0
-    @media(min-width: 1055px)
-      font-size: 1.15rem
+
 
   &_footer__icon
     font-size: 24px

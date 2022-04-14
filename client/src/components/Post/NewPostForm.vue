@@ -4,7 +4,6 @@
     :model="post"
     :rules="rules"
     label-width="120px"
-    class="demo-ruleForm"
     :size="formSize"
   >
     <!-- TODO: handle reset with other fields -->
@@ -52,6 +51,47 @@
     <el-form-item label="Post title" prop="title">
       <el-input class="title" v-model="post.title"></el-input>
     </el-form-item>
+
+    <!-- Upload picture -->
+    <el-upload
+      ref="upload"
+      :auto-upload="false"
+      list-type="picture-card"
+      action="#"
+      :limit="1"
+      :on-exceed="handleExceed"
+      :on-preview="handlePictureCardPreview"
+      :on-remove="handleRemove"
+    >
+      <template #default>
+        <el-icon><Plus /></el-icon>
+      </template>
+      <template #file="{ file }">
+        <div>
+          <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+          <span class="el-upload-list__item-actions">
+            <span
+              class="el-upload-list__item-preview"
+              @click="handlePictureCardPreview(file)"
+            >
+              <el-icon><zoom-in /></el-icon>
+            </span>
+
+            <span
+              v-if="!disabled"
+              class="el-upload-list__item-delete"
+              @click="handleRemove(file)"
+            >
+              <el-icon><Delete /></el-icon>
+            </span>
+          </span>
+        </div>
+      </template>
+    </el-upload>
+    <el-dialog v-model="dialogVisible">
+      <img :src="dialogImageUrl" alt="" />
+    </el-dialog>
+
     <!-- Content field -->
     <el-form-item label="Content" prop="content">
       <el-input
@@ -75,8 +115,9 @@
 import rules from '../../validation/rules';
 import API from '../../api/api';
 import { reactive, ref } from 'vue';
+const upload = ref();
 // @ts-ignore
-import Upload from '../Upload.vue';
+import type { UploadFile } from 'element-plus';
 // @ts-ignore
 import type { FormInstance } from 'element-plus';
 import { useRouter } from 'vue-router';
@@ -91,6 +132,26 @@ const post = reactive({
   content: '',
   image: '',
 });
+
+const handleExceed = (files) => {
+  upload.value.clearFiles();
+  upload.value.handleStart(files[0]);
+};
+const submitUpload = () => {
+  upload.value.submit();
+};
+
+const dialogImageUrl = ref('');
+const dialogVisible = ref(false);
+const disabled = ref(false);
+
+const handleRemove = (file: UploadFile) => {
+  upload.value.clearFiles();
+};
+const handlePictureCardPreview = (file: UploadFile) => {
+  dialogImageUrl.value = file.url!;
+  dialogVisible.value = true;
+};
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
@@ -114,3 +175,16 @@ const resetForm = (formEl: FormInstance | undefined) => {
   formEl.resetFields();
 };
 </script>
+
+<style lang="sass">
+.el-upload-list--picture-card
+  margin-left: 120px
+
+.el-dialog__body img
+  width: 100% !important
+
+.el-upload--picture-card, .el-upload-list--picture-card .el-upload-list__item
+
+  @media (min-width: 605px)
+    width: 20rem
+</style>
