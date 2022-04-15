@@ -6,10 +6,6 @@
     label-width="120px"
     :size="formSize"
   >
-    <!-- TODO: handle reset with other fields -->
-    <el-form-item prop="upload">
-      <Upload @change="upload" />
-    </el-form-item>
     <!-- Category -->
     <el-form-item label="Category" prop="category">
       <el-select
@@ -51,46 +47,10 @@
     <el-form-item label="Post title" prop="title">
       <el-input class="title" v-model="post.title"></el-input>
     </el-form-item>
-
-    <!-- Upload picture -->
-    <el-upload
-      ref="upload"
-      :auto-upload="false"
-      list-type="picture-card"
-      action="#"
-      :limit="1"
-      :on-exceed="handleExceed"
-      :on-preview="handlePictureCardPreview"
-      :on-remove="handleRemove"
-    >
-      <template #default>
-        <el-icon><Plus /></el-icon>
-      </template>
-      <template #file="{ file }">
-        <div>
-          <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
-          <span class="el-upload-list__item-actions">
-            <span
-              class="el-upload-list__item-preview"
-              @click="handlePictureCardPreview(file)"
-            >
-              <el-icon><zoom-in /></el-icon>
-            </span>
-
-            <span
-              v-if="!disabled"
-              class="el-upload-list__item-delete"
-              @click="handleRemove(file)"
-            >
-              <el-icon><Delete /></el-icon>
-            </span>
-          </span>
-        </div>
-      </template>
-    </el-upload>
-    <el-dialog v-model="dialogVisible">
-      <img :src="dialogImageUrl" alt="" />
-    </el-dialog>
+    <!-- Upload Image -->
+    <el-form-item label="Upload File" prop="image">
+      <input ref="upload" @change="selectFile" type="file" name="filename" />
+    </el-form-item>
 
     <!-- Content field -->
     <el-form-item label="Content" prop="content">
@@ -133,24 +93,8 @@ const post = reactive({
   image: '',
 });
 
-const handleExceed = (files) => {
-  upload.value.clearFiles();
-  upload.value.handleStart(files[0]);
-};
-const submitUpload = () => {
-  upload.value.submit();
-};
-
-const dialogImageUrl = ref('');
-const dialogVisible = ref(false);
-const disabled = ref(false);
-
-const handleRemove = (file: UploadFile) => {
-  upload.value.clearFiles();
-};
-const handlePictureCardPreview = (file: UploadFile) => {
-  dialogImageUrl.value = file.url!;
-  dialogVisible.value = true;
+const selectFile = (file) => {
+  post.image = upload.value = file[0];
 };
 
 const submitForm = async (formEl: FormInstance | undefined) => {
@@ -160,7 +104,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     formData.append('title', post.title);
     formData.append('category', post.category);
     formData.append('content', post.content);
-    formData.append('image', post.image);
+    formData.append('image', upload.value);
     if (valid) {
       const res = await API.addPost(formData);
       router.push({ name: 'Home' });
@@ -173,13 +117,11 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.resetFields();
+  upload.value.clearFiles();
 };
 </script>
 
 <style lang="sass">
-.el-upload-list--picture-card
-  margin-left: 120px
-
 .el-dialog__body img
   width: 100% !important
 
