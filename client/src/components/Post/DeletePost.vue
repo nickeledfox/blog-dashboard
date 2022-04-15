@@ -15,7 +15,7 @@
   </el-popconfirm>
 </template>
 
-<script lang="ts">
+<script>
 import { Delete } from '@element-plus/icons-vue';
 import { ElNotification } from 'element-plus';
 import { InfoFilled } from '@element-plus/icons-vue';

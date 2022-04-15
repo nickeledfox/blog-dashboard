@@ -1,15 +1,16 @@
 <template>
-  <div class="edit">
+  <el-container>
     <el-container class="main-container">
-      <el-container>
-        <el-main>
-          <p>Edit Post</p>
-        </el-main>
-      </el-container>
+      <el-main>
+        <Header />
+        <NewPostForm />
+      </el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
-<script>
-export default {};
+<script lang="ts" setup>
+// @ts-ignore
+import NewPostForm from '../components/Post/NewPostForm.vue';
+import Header from '../components/Header.vue';
 </script>

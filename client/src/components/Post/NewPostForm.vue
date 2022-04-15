@@ -4,13 +4,8 @@
     :model="post"
     :rules="rules"
     label-width="120px"
-    class="demo-ruleForm"
     :size="formSize"
   >
-    <!-- TODO: handle reset with other fields -->
-    <el-form-item prop="upload">
-      <Upload @change="upload" />
-    </el-form-item>
     <!-- Category -->
     <el-form-item label="Category" prop="category">
       <el-select
@@ -52,6 +47,11 @@
     <el-form-item label="Post title" prop="title">
       <el-input class="title" v-model="post.title"></el-input>
     </el-form-item>
+    <!-- Upload Image -->
+    <el-form-item label="Upload File" prop="image">
+      <input ref="upload" @change="selectFile" type="file" name="filename" />
+    </el-form-item>
+
     <!-- Content field -->
     <el-form-item label="Content" prop="content">
       <el-input
@@ -75,8 +75,9 @@
 import rules from '../../validation/rules';
 import API from '../../api/api';
 import { reactive, ref } from 'vue';
+const upload = ref();
 // @ts-ignore
-import Upload from '../Upload.vue';
+import type { UploadFile } from 'element-plus';
 // @ts-ignore
 import type { FormInstance } from 'element-plus';
 import { useRouter } from 'vue-router';
@@ -92,6 +93,10 @@ const post = reactive({
   image: '',
 });
 
+const selectFile = (file) => {
+  post.image = upload.value = file[0];
+};
+
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate(async (valid, fields) => {
@@ -99,7 +104,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     formData.append('title', post.title);
     formData.append('category', post.category);
     formData.append('content', post.content);
-    formData.append('image', post.image);
+    formData.append('image', upload.value);
     if (valid) {
       const res = await API.addPost(formData);
       router.push({ name: 'Home' });
@@ -112,5 +117,16 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.resetFields();
+  upload.value.clearFiles();
 };
 </script>
+
+<style lang="sass">
+.el-dialog__body img
+  width: 100% !important
+
+.el-upload--picture-card, .el-upload-list--picture-card .el-upload-list__item
+
+  @media (min-width: 605px)
+    width: 20rem
+</style>

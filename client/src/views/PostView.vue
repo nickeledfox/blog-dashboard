@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Edit } from '@element-plus/icons-vue';
 import DeletePost from '../components/Post/DeletePost.vue';
 import API from '../api/api';

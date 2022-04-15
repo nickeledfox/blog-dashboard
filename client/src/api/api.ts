@@ -7,7 +7,7 @@ export default class API {
     return res.data;
   }
 
-  static async getPostByID(id: number) {
+  static async getPostByID(id: string) {
     const res = await axios.get(`${URL}/${id}`);
     return res.data;
   }
@@ -17,12 +17,12 @@ export default class API {
     return res.data;
   }
 
-  static async updatePost(id: number, post: any) {
+  static async updatePost(id: string, post: any) {
     const res = await axios.patch(`${URL}/${id}`, post);
     return res.data;
   }
 
-  static async delPostByID(id: number) {
+  static async delPostByID(id: string) {
     const res = await axios.delete(`${URL}/${id}`);
     return res.data;
   }
